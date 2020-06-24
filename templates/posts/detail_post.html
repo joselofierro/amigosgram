@@ -1,0 +1,22 @@
+{% extends  'base.html'%}
+{% block head_content %}
+    <title>Platzigram</title>
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+         {% include 'posts/post_card.html' %}
+    </div>
+
+{% endblock %}
+
+{% block extrajs %}
+    <script type="application/javascript">
+        $('#like').click(function () {
+            $('#like').css('color', 'red');
+        });
+    </script>
+
+{% endblock %}
+
+

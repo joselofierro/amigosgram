@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block head_content %}
+    <h1>Instagram</h1>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            {% if posts %}
+                {% for post in posts %}
+                    {% include 'posts/post_card.html' %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'pagination.html' %}
+
+{% endblock %}
+
+
+{% block extrajs %}
+    <script type="application/javascript">
+        {% for post in posts %}
+            $('#like-{{ post.id }}').click(function () {
+                $('#like-{{ post.id }}').css('color', 'red');
+                $.ajax({
+                    type: "GET",
+                    url: "{% url 'posts:likes' %}",
+                    data: {
+                        'user': {{ request.user.pk }}, 'post': {{ post.id }},
+                    },
+                    dataType: 'json',
+                    /*data que retorna el servidor*/
+                    success: function (response) {
+                        console.log(response.like_count);
+                        $('#num-like-{{ post.id }}').html(response.like_count);
+
+                    },
+                    error: function (e) {
+                        console.log(e.message);
+                    }
+                });
+            });
+        {% endfor %}
+    </script>
+{% endblock %}
+
+

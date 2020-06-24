@@ -1,0 +1,20 @@
+{% extends 'users/base.html' %}
+
+{% block head_content %}
+    <title>Sign up</title>
+{% endblock %}
+
+
+{% block main %}
+
+    <form action="{% url 'users:sign_up' %}" method="post">
+    {% csrf_token %}
+        {% for input in form %}
+            <div class="form-group">
+                {{ input }}
+                <div class="invalid-feedback d-block">{{ input.errors|striptags }}</div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-block mt-5">Register</button>
+    </form>
+{% endblock %}

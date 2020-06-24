@@ -1,0 +1,25 @@
+
+<div class="col-sm-12 col-md-8 offset-md-2 p-0 post-container" style="margin-top: 6rem;" id="post-{{ post.id }}">
+    <div class="media pt-3 pl-3 pb-1">
+        <a href="{% url "users:detail" post.user.username %}">
+            <img class="mr-3 rounded-circle" height="35" src="{{ post.perfil.imagen.url }}" alt="{{ post.user.get_full_name }}">
+        </a>
+        <div class="media-body">
+            <p style="margin-top: 5px;">{{ post.user.get_full_name  }}</p>
+        </div>
+    </div>
+
+    <img style="width: 100%;" src="{{ post.foto.url }}" alt="{{ post.titulo }}">
+
+    <p class="mt-1 ml-2" >
+        <span style="color: #000; font-size: 20px;" id="like-{{ post.id }}">
+            <i class="far fa-heart"></i>
+        </span>
+        <span id="num-like-{{ post.id }}"></span>
+    </p>
+    <p class="ml-2 mt-0 mb-2">
+        <b>{{ post.titulo }}</b> - <small>{{ post.created }}</small>
+    </p>
+</div>
+
+

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load render_bundle from webpack_loader %}
+{% block main %}
+    <div class="container" id="react"></div>
+    <script>
+        window.props = {{ preguntas|safe }};
+        window.react_mount = document.getElementById('react');
+    </script>
+    {% render_bundle 'main' %}
+{% endblock %}

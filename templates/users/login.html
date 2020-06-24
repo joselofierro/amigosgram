@@ -1,0 +1,30 @@
+{% extends 'users/base.html' %}
+
+{% block head_content %}
+    <title>Login</title>
+{% endblock %}
+
+
+{% block main %}
+
+    {% if form.errors %}
+        <p class="alert alert-danger">Usuario y contraseña no coinciden</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'users:login' %}">
+    {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="text" name="username" placeholder="username">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="password">
+        </div>
+
+        <button class="btn btn-primary btn-block mt-5" type="submit">Sign in</button>
+    </form>
+
+    <p class="mt-4" style="text-align: center;">Aun no tienes cuenta? <a href="{% url 'users:sign_up' %}">Registrate.</a></p>
+    <p style="text-align: center;" class="mt-4"><a href="{% url 'password_reset' %}">¿Olvidaste contraseña?</a></p>
+
+
+{% endblock %}
